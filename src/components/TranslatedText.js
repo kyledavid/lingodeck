@@ -1,6 +1,6 @@
-const TranslatedText = () => {
+const TranslatedText = ({translatedText}) => {
   return (
-    <div>TranslatedText</div>
+    <div>{translatedText}</div>
   )
 }
 

@@ -1,6 +1,6 @@
-const SourceParagraph = () => {
+const SourceParagraph = ({sampleText}) => {
   return (
-    <div>SourceParagraph</div>
+    <div>{sampleText}</div>
   )
 }
 
