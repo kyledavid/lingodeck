@@ -3,6 +3,7 @@ import SourceParagraph from './components/SourceParagraph'
 import TranslatedText from './components/TranslatedText'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+const API_KEY = process.env.REACT_APP_API_KEY
 
 function App() {
   const [highlighting, setHighlighting] = useState(false)
@@ -10,7 +11,7 @@ function App() {
   const [translatedText, setTranslatedText] = useState('')
   const [sampleText, setSampleText] = useState('')
 
-  const API_KEY = 'AIzaSyBsNwxyXxrZh1sYKSP2B2gDN-F0uE0AIdw';
+  console.log(process.env)
 
   // GET sample text from DB
   useEffect(() => {
@@ -38,12 +39,14 @@ function App() {
 
   }, [])
 
+  // After setting textToTranslate translate that text and save it in state
   useEffect(() => {
     if(textToTranslate) {
       translateText(textToTranslate, 'en', 'es')
     }
   },[textToTranslate])
 
+  // Fetch writing sample from DB
   const fetchSampleText = async () => {
     const res = await fetch('http://localhost:5000/sampleText')
     const data = await res.json()
@@ -51,6 +54,7 @@ function App() {
     return data
   }
 
+  // Call api to translate text
   const translateText = async (q, target, source) => {
     console.log(q)
     try {
